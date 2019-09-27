@@ -1,0 +1,28 @@
+{
+  "name": "mysql-node",
+  "version": "1.0.0",
+  "description": "\"First project connecting MySql to a frontend\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DuncanRitchie2/mysql-node.git"
+  },
+  "keywords": [
+    "[\"node\"",
+    "\"mysql\"",
+    "\"sql\"",
+    "\"database\"",
+    "\"express\"",
+    "\"Duncan",
+    "Ritchie\"]"
+  ],
+  "author": "Duncan Ritchie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DuncanRitchie2/mysql-node/issues"
+  },
+  "homepage": "https://github.com/DuncanRitchie2/mysql-node#readme"
+}
