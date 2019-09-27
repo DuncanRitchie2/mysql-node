@@ -3,7 +3,6 @@ console.log("Hello from app.js!")
 require('dotenv').config()
 
 const mysql = require('mysql')
-// const promisify = require('promisify')
 const { promisify } = require('util')
 
 const connection = mysql.createConnection({
@@ -16,9 +15,10 @@ const connection = mysql.createConnection({
 const promisifiedQuery = promisify(connection.query).bind(connection)
 
 const runQuery = async () => {
+    console.log("Running runQuery()!")
     try {
         let data = await promisifiedQuery(queryString);
-        console.log(data);
+        console.log(data[0]);
     }
     catch (err) {
         console.log(err.sqlMessage);
@@ -29,13 +29,29 @@ const runQuery = async () => {
 };
 
 const addEmail = async (email) => {
+    console.log("Running addEmail()!")
     try {
         const query = `insert into users(email) values("${email}")`;
         let data = await promisifiedQuery(query);
+        console.log(data);
     }
     catch (err) {
-        console.log(err.sqlMessage);
+        console.log("Error message "+err.sqlMessage);
+    }
+    finally {
+        runQuery();
     }
 }
 
-addEmail("duncanritchie@btinternet.com");
+const faker = require('faker');
+
+// const fakePerson = {
+//     email: faker.internet.email()
+// };
+
+const bulkFakeAdd = () => {
+    let people = [];
+    for (let i = 0; i < 500; i++) {
+        people.push([faker.internet.email(), faker.date.past()])
+    }
+};
