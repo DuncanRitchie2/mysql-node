@@ -17,9 +17,9 @@ const promisifiedQuery = promisify(connection.query).bind(connection)
 const runQuery = async () => {
     console.log("Running runQuery()!")
     try {
-        let queryString = "select count(*) from users;";
+        let queryString = "select count(*) as count from users;";
         let data = await promisifiedQuery(queryString);
-        console.log("data[0] = "+data[0]);
+        return data;
     }
     catch (err) {
         console.log("Error message = "+err.sqlMessage);
@@ -80,4 +80,6 @@ const addEmail = async (emailAddress) => {
 
 
 
-addEmail("duncanritchie@btinternet.com");
+// addEmail("duncanritchie@btinternet.com");
+
+module.exports = { runQuery, addEmail };
