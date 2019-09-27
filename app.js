@@ -28,15 +28,15 @@ const runQuery = async () => {
     }
 };
 
-const addEmail = async (email) => {
+const addEmail = async () => {
     console.log("Running addEmail()!")
     try {
-        const query = `insert into users(email) values("${email}")`;
-        let data = await promisifiedQuery(query);
-        console.log(data);
+        const query = `insert into users(email, created_at) values ?`;
+        let data = await promisifiedQuery(query, [bulkFakeCreate()]);
+        console.log("data = " + data);
     }
     catch (err) {
-        console.log("Error message "+err.sqlMessage);
+        console.log("Error message = "+err.sqlMessage);
     }
     finally {
         runQuery();
@@ -49,9 +49,12 @@ const faker = require('faker');
 //     email: faker.internet.email()
 // };
 
-const bulkFakeAdd = () => {
+const bulkFakeCreate = () => {
     let people = [];
     for (let i = 0; i < 500; i++) {
         people.push([faker.internet.email(), faker.date.past()])
     }
+    return people;
 };
+
+addEmail();
