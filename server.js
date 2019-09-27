@@ -5,7 +5,7 @@ const server = express();
 const port = 3002;
 const path = require('path');
 
-server.get("/", (req,res)=>{res.send("Hello from root!")});
+// server.get("/", (req,res)=>{res.send("Hello from root!")});
 
 server.use(express.static(path.join(__dirname, "public")));
 
