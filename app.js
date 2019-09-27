@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
     database: "MySqlNode"
 })
 
-const promisifiedQuery = promisify(connection.query).bind(connection)
+const promisifiedQuery = promisify(connection.query).bind(connection);
 
 const runQuery = async () => {
     console.log("Running runQuery()!")
@@ -22,25 +22,23 @@ const runQuery = async () => {
         return data;
     }
     catch (err) {
-        console.log("Error message = "+err.sqlMessage);
+        console.log("Error message in runQuery() = "+err);
     }
     finally {
-        connection.end();
+        // connection.end();
     }
 };
 
 const addEmail = async (emailAddress) => {
     console.log("Running addEmail()!")
     try {
-        const query = `insert into users(email) values (${emailAddress})`;
+        const query = `insert into users(email) values ("${emailAddress}")`;
         let data = await promisifiedQuery(query);
         console.log("data = " + data);
+        return data;
     }
     catch (err) {
-        console.log("Error message = "+err.sqlMessage);
-    }
-    finally {
-        runQuery();
+        console.log("Error message in addEmail() = "+err);
     }
 }
 
